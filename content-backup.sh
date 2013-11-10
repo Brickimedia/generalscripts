@@ -9,6 +9,6 @@ echo "backing up dbs"
 
 for db in ${databases[*]}
 do
-	echo "backing up " $db
+	echo "backing up" $db
 	mysqldump -h localhost --user=$dbuser --password=$dbpass $db | gzip > /media/backups/$db.sql.gz --force
 done
