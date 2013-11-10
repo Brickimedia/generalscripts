@@ -3,7 +3,7 @@
 echo "Brickimedia automatic updater"
 echo "#############################"
 
-locations=("/var/www" "/media/MediaWikiChat" "/media/NewTalkGlobal" "/media/SocialProfile" "/media/Refreshed" "/media/Custard")
+locations=("/var/www" "/media/MediaWikiChat" "/media/NewTalkGlobal" "/media/SocialProfile" "/var/www/wiki/skins/Refreshed" "/media/Custard" "/media/GlobalContribs")
 
 for path in ${locations[*]}
 do

@@ -2,7 +2,7 @@
 
 source /media/backups/pass.sh
 
-databases=(shared meta en customs lmbw stories cuusoo admin dev globalblocking)
+databases=(shared meta en customs stories cuusoo admin dev globalblocking)
 
 echo "backing up dbs"
 
