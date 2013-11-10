@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Source file for database passwords
 source /media/backups/pass.sh
 
 databases=(shared meta en customs stories cuusoo admin dev globalblocking)
