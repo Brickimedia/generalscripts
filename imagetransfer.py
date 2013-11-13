@@ -1,3 +1,8 @@
+import os
+print os.getcwd()
+
+
+
 # -*- coding: utf-8 -*-
 """
 Script to copy images to Wikimedia Commons, or to another wiki.
@@ -55,7 +60,11 @@ class ImageTransferBot:
         if debug:
             print "-" * 50
             print "Found image: %s"% imageTitle
-        url = sourceImagePage.fileUrl().encode('utf-8')
+        try:
+		url = sourceImagePage.fileUrl().encode('utf-8')
+	except:
+		pywikibot.output("urlencodeerror")
+		return
         pywikibot.output(u"URL should be: %s" % url)
         # localize the text that should be printed on the image description page
         try:
@@ -84,13 +93,14 @@ class ImageTransferBot:
             description = ''
             print "Image description page is redirect."
         else:
-            bot = upload.UploadRobot(url=url, description=description,
+          bot = upload.UploadRobot(url=url, description=description,
                                      targetSite=self.targetSite,
                                      urlEncoding=sourceSite.encoding(),
                                      keepFilename=self.keep_name,
                                      ignoreWarning=True,
                                      verifyDescription = not self.keep_name)
-            # try to upload
+          try:
+	  # try to upload
             targetFilename = bot.run()
             if targetFilename and self.targetSite.family.name == 'commons' and \
                self.targetSite.lang == 'commons':
@@ -111,6 +121,9 @@ class ImageTransferBot:
                                         nowCommonsTemplate[sourceSite.lang]
                                         % targetFilename,
                                         comment=nowCommonsMessage[sourceSite.lang])
+	  except:
+		pywikibot.output("uploadingerror")
+		return
 
     def showImageList(self, imagelist):
         for i in range(len(imagelist)):
@@ -121,7 +134,7 @@ class ImageTransferBot:
                              % (i, image.title(asLink=True)))
             try:
                 # Show the image description page's contents
-                pywikibot.output(image.get(throttle=False))
+                #pywikibot.output(image.get(throttle=False))
                 # look if page already exists with this name.
                 # TODO: consider removing this: a different image of the same
                 # name may exist on the target wiki, and the bot user may want
@@ -136,7 +149,7 @@ class ImageTransferBot:
                                      % self.targetSite)
                     print "-" * 60
                     pywikibot.output(targetImage.get(throttle=False))
-                    sys.exit()
+                    #sys.exit()
                 except pywikibot.NoPage:
                     # That's the normal case
                     pass
@@ -149,6 +162,7 @@ class ImageTransferBot:
         print "="*60
 
     def run(self):
+      try:
         for page in self.generator:
             if self.interwiki:
                 imagelist = []
@@ -182,7 +196,8 @@ class ImageTransferBot:
                     imagelist = imagelist[:todo] + imagelist[todo + 1:]
                 else:
                     pywikibot.output(u'No such image number.')
-
+      except:
+        pass
 
 def main(page=None):
     # if -file is not used, this temporary array is used to read the page title.
