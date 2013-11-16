@@ -1,8 +1,8 @@
 #!/bin/bash
 
 now=$(date +"%A")
-rm -rf /var/www/wiki/backups/$now
-mkdir -p /var/www/wiki/backups/$now
+rm -rf /media/backups/$now
+mkdir -p /media/backups/$now
 
 #Source file for database passwords
 source /media/backups/pass.sh
