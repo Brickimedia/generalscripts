@@ -5,7 +5,7 @@ cd /var/www
 #backup destination
 dest="/media/backup/bm-images"
 
-day=$(date +%A)
+day=$(date +%S)
 archive_file="bm-images-$day.tgz"
 
 echo "Backing up images to $dest/$archive_file"
