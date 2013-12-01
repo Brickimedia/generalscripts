@@ -33,3 +33,7 @@ echo "Updating extensions"
 cd /var/www/core/extensions
 git pull
 git submodule update
+
+echo "Updating LocalSettings"
+cd /var/www/core/
+git --git-dir=./LocalSettings.git pull origin master
