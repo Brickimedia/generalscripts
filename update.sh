@@ -20,7 +20,7 @@ echo
 echo "Updating Brickimedia 1.22"
 echo "#############################"
 
-skins=(refreshed custard deepsea quartz lia)
+skins=(Refreshed Custard DeepSea Quartz Lia)
 
 for skin in ${skins[*]}
 do
