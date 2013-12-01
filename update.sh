@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Brickimedia automatic updater"
+echo "Updating Brickimedia 1.20"
 echo "#############################"
 
 locations=("/var/www" "/media/MediaWikiChat" "/media/NewTalkGlobal" "/media/SocialProfile" "/var/www/wiki/skins/Refreshed" "/media/Custard" "/var/www/wiki/skins/Quartz" "/var/www/wiki/skins/DeepSea" "/media/GlobalContribs" "/var/www/wiki/extensions/NumberOfComments" )
@@ -14,3 +14,22 @@ do
 done
 
 echo "Complete!"
+
+#1.22 updates
+echo
+echo "Updating Brickimedia 1.22"
+echo "#############################"
+
+skins=(refreshed custard deepsea quartz lia)
+
+for skin in ${skins[*]}
+do
+	echo "Updating "$skin
+	cd /var/www/core/skins/$skin
+	git pull
+done
+
+echo "Updating extensions"
+cd /var/www/core/extensions
+git pull
+git submodule update
