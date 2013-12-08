@@ -32,6 +32,7 @@ done
 echo "Updating extensions"
 cd /var/www/core/extensions
 git pull
+git submodule init
 git submodule update
 
 echo "Updating LocalSettings"
