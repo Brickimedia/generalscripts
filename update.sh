@@ -22,3 +22,7 @@ git submodule update
 echo "Updating LocalSettings"
 cd /var/www/core/
 git --git-dir=./LocalSettings.git pull origin master
+
+echo "Updating splash"
+cd /var/www/splash/
+sudo git pull
