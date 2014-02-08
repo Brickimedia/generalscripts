@@ -1,6 +1,7 @@
 import os
 print os.getcwd()
-
+import sys
+sys.path.append(os.getcwd())
 
 
 # -*- coding: utf-8 -*-
@@ -149,7 +150,7 @@ class ImageTransferBot:
                                      % self.targetSite)
                     print "-" * 60
                     pywikibot.output(targetImage.get(throttle=False))
-                    #sys.exit()
+                    break #sys.exit()
                 except pywikibot.NoPage:
                     # That's the normal case
                     pass
@@ -202,10 +203,10 @@ class ImageTransferBot:
 def main(page=None):
     # if -file is not used, this temporary array is used to read the page title.
     pageTitle = []
-    start = pywikibot.input('where to start?')
-    basicgenerator = pagegenerators.AllpagesPageGenerator(start=start,namespace=6)
-    gen = pagegenerators.PreloadingGenerator(basicgenerator)
-#    gen = None
+#    start = pywikibot.input('where to start?')
+#    basicgenerator = pagegenerators.AllpagesPageGenerator('!', 6)
+#    gen = pagegenerators.PreloadingGenerator(basicgenerator)
+    gen = None
     interwiki = False
     keep_name = False
     targetLang = None
