@@ -7,7 +7,7 @@ mkdir -p /media/backups/$now
 #Source file for database passwords
 source /media/backups/pass.sh
 
-databases=(shared meta en customs stories cuusoo admin dev globalblocking)
+databases=(shared meta en customs stories cuusoo admin dev globalblocking data)
 
 echo "backing up dbs"
 
