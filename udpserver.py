@@ -13,14 +13,16 @@ import sys
 recver = None
  
 class RCBot(irc.IRCClient):
-    nickname = "MeikoBot"
-    channel = "#brickimedia-cvn"
+    nickname = raw_input("Nickname: ")
+    channel = raw_input("Channel: ")
     def signedOn(self):
         global recver
         self.join(self.channel)
         print "Signed on as %s." % (self.nickname,)
         recver = self
-        #OPTIONAL: use self.msg to identify to services
+        identify = raw_input("Identify to services? Enter password: ")
+        self.msg("NickServ","IDENTIFY %s " % (identify,))
+        
     def joined(self, channel):
         print "Joined %s." % (channel,)
  
