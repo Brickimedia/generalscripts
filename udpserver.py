@@ -46,6 +46,6 @@ class Echo(DatagramProtocol):
         recver.gotUDP(data)
         
 udpportnumber = raw_input("Listen to UDP port: ")
-reactor.listenUDP(udpportnumber, Echo())
+reactor.listenUDP((udpportnumber,), Echo())
 reactor.connectTCP("irc.freenode.net", 6667, RCFactory())
 reactor.run()
