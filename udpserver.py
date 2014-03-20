@@ -20,6 +20,8 @@ class RCBot(irc.IRCClient):
         self.join(self.channel)
         print "Signed on as %s." % (self.nickname,)
         recver = self
+        identify = raw_input("Identify to services? Enter password: ")
+        self.msg("NickServ","IDENTIFY %s " % (identify,))
         
     def joined(self, channel):
         print "Joined %s." % (channel,)
