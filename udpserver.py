@@ -20,8 +20,6 @@ class RCBot(irc.IRCClient):
         self.join(self.channel)
         print "Signed on as %s." % (self.nickname,)
         recver = self
-        identify = raw_input("Identify to services? Enter password: ")
-        self.msg("NickServ","IDENTIFY %s " % (identify,))
         
     def joined(self, channel):
         print "Joined %s." % (channel,)
@@ -44,7 +42,8 @@ class Echo(DatagramProtocol):
     def datagramReceived(self, data, (host, port)):
         global recver
         recver.gotUDP(data)
- 
-reactor.listenUDP(51666, Echo())
+        
+udpportnumber = raw_input("Listen to UDP port: ")
+reactor.listenUDP(udpportnumber, Echo())
 reactor.connectTCP("irc.freenode.net", 6667, RCFactory())
 reactor.run()
