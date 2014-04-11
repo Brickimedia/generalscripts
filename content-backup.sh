@@ -11,9 +11,11 @@ databases=(shared meta en customs stories cuusoo admin dev globalblocking data)
 
 echo "backing up dbs"
 
+/home/nxt/.dropbox-dist/dropboxd & #start dropbox incase it has been stopped
+
 for db in ${databases[*]}
 do
-	echo "backing up " $db
-	mysqldump -h localhost --user=$dbuser --password=$dbpass $db | gzip > /media/backups/$now/$db.sql.gz --force
-
+        echo "backing up " $db
+        mysqldump -h localhost --user=$dbuser --password=$dbpass $db | gzip > /media/backups/$now/$db.sql.gz --force
+        cp -f /media/backups/$now/$db.sql.gz /home/nxt/Dropbox/backups/$db.sql.gz
 done
