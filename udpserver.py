@@ -45,7 +45,7 @@ class Echo(DatagramProtocol):
         global recver
         recver.gotUDP(data)
         
-udpportnumber = raw_input("Listen to UDP port: ")
+udpportnumber = raw_input("Listen to UDP port: ") # Port numbers are available at http://meta.brickimedia.org/wiki/IRC
 reactor.listenUDP(int(udpportnumber), Echo())
 reactor.connectTCP("irc.freenode.net", 6667, RCFactory())
 reactor.run()
