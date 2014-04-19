@@ -14,6 +14,13 @@ use constant DATAGRAM_MAXLEN => 1024;
 
 select((select(STDOUT), $|=1)[0]);
 
+# Initial variables
+print "Nickname: ";
+my $nickname = <>;
+print "Channel: ";
+my $channelname = <>;
+print "Listen to UDP port: ";
+my $udpportnumber = <>;
 
 # Create the component that will represent an IRC network.
 my ($irc) = POE::Component::IRC->spawn;
@@ -46,7 +53,7 @@ sub server_start {
 
     my $socket = IO::Socket::INET->new(
         Proto     => 'udp',
-        LocalPort => 51666,
+        LocalPort => $udpportnumber,
     );
 
     die "Couldn't create server socket: $!" unless $socket;
@@ -59,7 +66,7 @@ sub server_read {
     recv( $socket, my $message = "",  DATAGRAM_MAXLEN, 0 );
     $message =~ /\[\[(.+)\]\]/s;
     $ircmessage = $1;
-    $irc->yield( privmsg => "#brickimedia-cvn", $ircmessage );
+    $irc->yield( privmsg => $channelname, $ircmessage );
 
 }
 
@@ -76,11 +83,11 @@ sub bot_start {
 
     $irc->yield( register => "all" );
 
-    my $nick = 'MeikoBot';
+    my $nick = $nickname;
     $irc->yield( connect =>
                  { Nick => $nick,
-            Username => 'MeikoBot',
-            Ircname  => 'MeikoBot',
+            Username => $nickname,
+            Ircname  => $nickname,
             Server   => 'irc.freenode.net',
             Port     => '6667',
                }
@@ -89,7 +96,7 @@ sub bot_start {
 
 # The bot has successfully connected to a server.  Join a channel.
 sub on_connect {
-    $irc->yield( join => "#brickimedia-cvn" );
+    $irc->yield( join => $channelname );
 }
 
 # The bot has received a public message.  Parse it for commands, and
