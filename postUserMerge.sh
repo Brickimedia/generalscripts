@@ -4,9 +4,15 @@
 cd /var/www/core/maintenance
 
 # inputs
-read -p "Wiki to operate on: " usewiki
 read -p "Username/IP to transfer from: " fromuser
 read -p "Username/IP to transfer to: " touser
 
+# all wikis
+WIKIS=(meta dev en customs stories ideas admin data nl answers books)
+
 # execute
-WIKI=$usewiki php reassignEdits.php $fromuser $touser
+for wiki in $WIKIS
+do
+  echo "Reassigning edits from" $fromuser "to" $touser "on" $wiki
+  WIKI=$wiki php reassignEdits.php $fromuser $touser
+done
