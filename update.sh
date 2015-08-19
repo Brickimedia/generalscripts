@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Updating Brickimedia 1.23.0"
+echo "Updating Brickimedia 1.24.3"
 echo "#############################"
 
 skins=(Refreshed Custard DeepSea Quartz Lia)
@@ -18,6 +18,10 @@ sudo git pull
 sudo git submodule init
 sudo git submodule sync
 sudo git submodule update
+sudo git submodule update --init --recursive
+sudo git submodule update MediaWikiChat
+sudo git submodule update WikiForum
+sudo git submodule update Comments
 
 echo "Updating LocalSettings"
 cd /var/www/core/
