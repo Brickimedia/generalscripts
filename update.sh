@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Updating Brickimedia 1.24.3"
+echo "Updating Brickimedia 1.24.4"
 echo "#############################"
 
 skins=(Refreshed Custard DeepSea Quartz Lia)
