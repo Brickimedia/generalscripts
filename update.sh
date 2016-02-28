@@ -10,10 +10,9 @@ do
 	echo "Updating "$skin
 	cd /var/www/core/skins/$skin
 	sudo git pull
+	sudo git submodule init
+	sudo git submodule update
 done
-cd /var/www/core/skins/Refreshed
-sudo git submodule init
-sudo git submodule update
 
 echo "Updating extensions"
 cd /var/www/core/extensions
