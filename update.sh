@@ -11,6 +11,9 @@ do
 	cd /var/www/core/skins/$skin
 	sudo git pull
 done
+cd /var/www/core/skins/Refreshed
+sudo git submodule init
+sudo git submodule update
 
 echo "Updating extensions"
 cd /var/www/core/extensions
