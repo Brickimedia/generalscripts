@@ -2,7 +2,7 @@
 
 #runs the given script on all wikis in our farm
 
-WIKIS=(meta dev en fanatics stories ideas admin data answers books minifigures)
+WIKIS=(meta dev en customs stories ideas admin data answers books minifigures)
 
 for wiki in $WIKIS
 do

@@ -8,7 +8,7 @@ read -p "Username/IP to transfer from: " fromuser
 read -p "Username/IP to transfer to: " touser
 
 # all wikis
-WIKIS=(meta dev en fanatics stories ideas admin data answers books minifigures)
+WIKIS=(meta dev en customs stories ideas admin data answers books minifigures)
 
 # execute
 for wiki in $WIKIS
